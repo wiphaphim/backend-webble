@@ -11,7 +11,7 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(cors())
 
-app.post('/bothook', (req, res) => {
+app.use('/bothook', (req, res) => {
     try {
         console.log("headers ===>", req.headers);
         console.log("body ===>", req.body);
