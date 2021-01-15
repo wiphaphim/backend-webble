@@ -1,7 +1,7 @@
 const express = require('express')
 const bodyParser = require('body-parser') 
 const axios = require('axios');
-// const cors = require('cors')
+var cors = require('cors')
 
 const app = express()
 const port = 3000
@@ -9,13 +9,14 @@ const port = 3000
 app.use(express.json());
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
-// app.use(cors())
+app.use(cors())
 
-app.get('/getuser', (req, res) => {
+app.post('/bothook', (req, res) => {
     try {
         console.log("headers ===>", req.headers);
         console.log("body ===>", req.body);
         console.log("params ===>", req.params);
+        console.log("query ===>", req.query);
         res.send("get user")
         // const onechat_token = req.body
         // console.log("onechat_token ===>", onechat_token);
