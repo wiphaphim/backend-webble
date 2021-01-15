@@ -3,10 +3,12 @@ const bodyParser = require('body-parser')
 const axios = require('axios');
 var cors = require('cors')
 
+
 const app = express()
 const port = 3000
 
 app.use(express.json());
+app.use(express.static('public'));
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(cors())
@@ -44,9 +46,14 @@ app.use('/bothook', (req, res) => {
         // });
     } catch (err) {
         console.log(err);
-        req.status(401).json({message: err.response.data.errorMessage, status:'fail', data:''})
+        req.status(401).send({message: err.response.data.errorMessage, status:'fail', data:''})
     }
     
 }) 
+
+app.get('*', (req, res, next) => {
+	console.log(req.body)
+	res.send('bothook server v1.0.0');
+});
 
 app.listen(port, () => console.log(`Example app listening on ${port} port!`))
